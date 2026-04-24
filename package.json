@@ -1,0 +1,24 @@
+{
+  "name": "truewatch-m365-cloudflare-worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy:entra-log-collector": "wrangler deploy --config entra-log-collector/wrangler.jsonc",
+    "deploy:entra-log-processor": "wrangler deploy --config entra-log-processor/wrangler.jsonc",
+    "deploy:entra-app-inventory-collector": "wrangler deploy --config entra-app-inventory-collector/wrangler.jsonc",
+    "deploy:entra-app-inventory-processor": "wrangler deploy --config entra-app-inventory-processor/wrangler.jsonc",
+    "deploy:o365-unified-log-collector": "wrangler deploy --config o365-unified-log-collector/wrangler.jsonc",
+    "deploy:o365-unified-log-processor": "wrangler deploy --config o365-unified-log-processor/wrangler.jsonc",
+    "deploy:m365-license-collector": "wrangler deploy --config m365-license-collector/wrangler.jsonc",
+    "deploy:m365-license-processor": "wrangler deploy --config m365-license-processor/wrangler.jsonc",
+    "deploy:datakit": "wrangler deploy --config datakit/wrangler.jsonc",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "wrangler": "^4.62.0"
+  }
+}

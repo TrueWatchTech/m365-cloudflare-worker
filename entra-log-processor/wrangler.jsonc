@@ -1,0 +1,40 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "entra-log-processor",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-07",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "kv_namespaces": [
+    {
+      "binding": "LOG_IDS",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID" // run: wrangler kv namespace create LOG_IDS_ENTRA
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "LOGS_BUCKET",
+      "bucket_name": "m365-logs"
+    }
+  ],
+  "services": [
+    {
+      "binding": "DATAKIT",
+      "service": "datakit",
+      "environment": "production"
+    }
+  ],
+  "queues": {
+    "consumers": [
+      {
+        "queue": "entra-log-events",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5
+      }
+    ]
+  }
+}

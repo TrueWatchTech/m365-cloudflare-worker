@@ -1,0 +1,34 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "entra-app-inventory-processor",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-08",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "r2_buckets": [
+    {
+      "binding": "LOGS_BUCKET",
+      "bucket_name": "m365-logs"
+    }
+  ],
+  "services": [
+    {
+      "binding": "DATAKIT",
+      "service": "datakit",
+      "environment": "production"
+    }
+  ],
+  "queues": {
+    "consumers": [
+      {
+        "queue": "entra-application-events",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5
+      }
+    ]
+  }
+}

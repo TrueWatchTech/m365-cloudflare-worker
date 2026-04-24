@@ -1,0 +1,38 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "datakit",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-07",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "containers": [
+    {
+      "class_name": "Container",
+      // Wrangler will automatically build and push this Dockerfile when you run `wrangler deploy`.
+      "image": "./Dockerfile",
+      "max_instances": 2,
+      "instance_type": "standard-2",
+      "name": "datakit"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CONTAINER",
+        "class_name": "Container"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "Container"
+      ]
+    }
+  ]
+}

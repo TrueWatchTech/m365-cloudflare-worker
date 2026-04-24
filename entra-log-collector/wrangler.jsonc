@@ -1,0 +1,35 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "entra-log-collector",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-07",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "triggers": {
+    "crons": [
+      "*/2 * * * *"
+    ]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "LOG_CURSORS",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID" // run: wrangler kv namespace create LOG_CURSORS
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "LOGS_BUCKET",
+      "bucket_name": "m365-logs"
+    }
+  ],
+  "vars": {
+    "TENANT_LABEL": "YOUR_TENANT_LABEL",
+    "TENANT_ID": "YOUR_TENANT_ID",
+    "CLIENT_ID": "YOUR_CLIENT_ID",
+    "R2_BATCH_SIZE": "1000"
+  }
+}
