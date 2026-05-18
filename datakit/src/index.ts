@@ -26,7 +26,7 @@ export class Container extends DurableObject<Env> {
             ENV_GLOBAL_HOST_TAGS: "datakit-source=cloudflare",
             ENV_HTTP_LISTEN: "0.0.0.0:9529",
             ENV_DEFAULT_ENABLED_INPUTS: "logstreaming",
-            ENV_HTTP_PUBLIC_APIS: "/, /metrics, /logstreaming",
+            ENV_HTTP_PUBLIC_APIS: "/, /metrics, /logstreaming, /v1/write/metric",
           },
         });
       }
