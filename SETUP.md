@@ -31,6 +31,16 @@ wrangler login
 wrangler r2 bucket create m365-logs
 ```
 
+## Step 2b — Set R2 Lifecycle Rule (Recommended)
+
+To automatically clear processed logs from R2 every 7 days and avoid unnecessary storage costs (data is already forwarded to TrueWatch):
+
+```bash
+wrangler r2 bucket lifecycle add m365-logs \
+  --prefix "m365/" \
+  --expire-days 7
+```
+
 ## Step 3 — Create KV Namespaces
 
 Run each command and copy the returned ID into the corresponding `wrangler.jsonc`:
